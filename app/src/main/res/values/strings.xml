@@ -2,4 +2,6 @@
     <string name="app_name">NewsApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="news_app">News App</string>
+    <string name="pick_your_category">pick your category of interest</string>
 </resources>

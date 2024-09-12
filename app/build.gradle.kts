@@ -57,11 +57,12 @@ dependencies {
     // gson converter
     implementation(libs.converter.gson)
 
-
     // navigation component
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
-
     // logging interceptor
     implementation(libs.logging.interceptor)
+    // navigation component
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 }
