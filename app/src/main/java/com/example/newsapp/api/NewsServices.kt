@@ -10,7 +10,7 @@ interface NewsServices {
 
     @GET("v2/top-headlines/sources")
     fun getNewsSources(
-        @Query("apiKey") apiKey: String = API_KEY
+        @Query("apiKey") apiKey: String = API_KEY,
     ): Call<SourcesResponse>
 
 
