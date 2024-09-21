@@ -1,5 +1,6 @@
 package com.example.newsapp.utils
 
+import android.app.ProgressDialog
 import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import com.google.gson.Gson
@@ -34,3 +35,19 @@ fun Context.showDialog(
 fun <T> String.fromJson(className: Class<T>): T {
     return Gson().fromJson(this, className)
 }
+
+fun Context.showLoadingDialog(message: String): ProgressDialog {
+    val progressDialog = ProgressDialog(this)
+    progressDialog.setMessage(message)
+    progressDialog.show()
+
+    return progressDialog
+}
+
+fun ProgressDialog.hideLoadingDialog() {
+    if (this.isShowing) {
+        this.dismiss()
+    }
+
+}
+

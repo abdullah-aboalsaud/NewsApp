@@ -39,8 +39,9 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
         requireContext().showDialog(
             message = errorResponse?.message
                 ?: R.string.something_went_wrong.toString(),
-            positiveBtnText = R.string.ok.toString()
+            positiveBtnText = getString(R.string.ok)
         )
     }
+
 
 }
