@@ -1,6 +1,5 @@
 package com.example.newsapp.api
 
-import android.content.Context
 import android.util.Log
 import com.example.newsapp.api.interceptor.AuthInterceptor
 import com.example.newsapp.api.interceptor.CacheInterceptor
@@ -16,7 +15,6 @@ import okhttp3.logging.HttpLoggingInterceptor.Level
 import okhttp3.logging.HttpLoggingInterceptor.Logger
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
 import javax.inject.Singleton
 
 
@@ -54,12 +52,6 @@ object ApiModule {
             .build()
     }
 
-    private fun provideCache(context: Context): Cache {
-        return Cache(
-            File(context.cacheDir, "news-cache"),
-            10L * 1024L * 1024L
-        ) // 10 MiB
-    }
 
     @Provides
     @Singleton
