@@ -39,11 +39,11 @@ class NewsAdapter(private var newsList: MutableList<ArticlesItem?> = mutableList
         fun bind(article: ArticlesItem) {
             Glide.with(itemView)
                 .load(article.urlToImage)
-                .placeholder(R.drawable.no_image)
+                .placeholder(R.drawable.progress_animation)
                 .into(binding.ivNews)
             binding.tvTitle.text = article.title
             binding.tvAuthor.text = article.author
-            binding.tvDate.text = article.publishedAt
+            binding.tvDate.text = article.formatDate()
 
         }
 

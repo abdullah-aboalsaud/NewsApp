@@ -11,5 +11,4 @@ data class SourcesResponse(
     @field:SerializedName("sources")
     val sources: List<SourcesItem?>? = null,
 
-
     ) : BaseResponse(), Parcelable

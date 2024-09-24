@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_sports" />
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.example.newsapp.ui.fragments.CategoriesFragment"
+        android:name="com.example.newsapp.ui.fragments.categories.all_categories.CategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_categories">
         <action
