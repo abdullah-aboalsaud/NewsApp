@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.CategoriesFragment">
+    tools:context=".ui.fragments.categories.all_categories.CategoriesFragment">
 
 
     <!-- Category Title -->
@@ -35,86 +35,84 @@
                 android:id="@+id/iv_sports"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
                 android:layout_marginTop="30dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/sports"
+                app:layout_constraintEnd_toStartOf="@id/iv_politics"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.35"
+                app:layout_constraintWidth_percent="0.40"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/iv_health"
+                style="@style/category_item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="8dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/health"
+                app:layout_constraintEnd_toStartOf="@id/iv_business"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_sports"
-                app:layout_constraintWidth_percent="0.35" />
+                app:layout_constraintTop_toBottomOf="@id/iv_sports" />
 
             <ImageView
-                android:id="@+id/environment_pic"
+                android:id="@+id/iv_environment"
+                style="@style/category_item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
-                android:layout_marginTop="8dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/environment"
+                app:layout_constraintEnd_toStartOf="@id/iv_science"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_health"
-                app:layout_constraintWidth_percent="0.35" />
+
+                />
 
             <ImageView
                 android:id="@+id/iv_politics"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="52dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/politics"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/iv_sports"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth_percent="0.35" />
+                app:layout_constraintWidth_percent="0.4" />
 
             <ImageView
-                android:id="@+id/business_pic"
+                android:id="@+id/iv_business"
+                style="@style/category_item"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="52dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/business"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_politics"
-                app:layout_constraintWidth_percent="0.35" />
+                app:layout_constraintStart_toEndOf="@id/iv_health"
+                app:layout_constraintTop_toBottomOf="@id/iv_politics" />
 
             <ImageView
-                android:id="@+id/science_pic"
+                android:id="@+id/iv_science"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="52dp"
+                style="@style/category_item"
                 android:adjustViewBounds="true"
                 android:src="@drawable/science"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_health"
-                app:layout_constraintWidth_percent="0.35" />
+                app:layout_constraintStart_toEndOf="@id/iv_environment" />
 
             <ImageView
                 android:id="@+id/iv_test"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="52dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/test"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/science_pic"
-                app:layout_constraintWidth_percent="0.35" />
+                style="@style/category_item"
+                app:layout_constraintEnd_toEndOf="@id/iv_science"
+                app:layout_constraintTop_toBottomOf="@id/iv_science" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -123,3 +121,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,4 +1,4 @@
-package com.example.newsapp.api.model
+package com.example.newsapp.api.model.sources
 
 import android.os.Parcelable
 import com.example.newsapp.base.BaseResponse
@@ -10,6 +10,5 @@ data class SourcesResponse(
 
     @field:SerializedName("sources")
     val sources: List<SourcesItem?>? = null,
-
 
     ) : BaseResponse(), Parcelable

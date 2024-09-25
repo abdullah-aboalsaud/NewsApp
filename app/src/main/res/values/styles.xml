@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="category_item">
+        <item name="layout_constraintWidth_percent">0.4</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
+</resources>
