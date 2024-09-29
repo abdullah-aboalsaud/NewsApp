@@ -13,8 +13,5 @@ class NewsRemoteDataSource @Inject constructor(
         return webServices.getHeadLines(language).articles
     }
 
-    suspend fun getArticlesBySourceId(sourceId: String): List<ArticleDM?>? {
-        TODO("Not yet implemented")
-    }
 
 }

@@ -10,8 +10,9 @@ import com.example.newsapp.base.BaseFragment
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.ui.adapters.HeadLinesAdapter
 import com.example.newsapp.ui.fragments.NewsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     private val newsViewModel by viewModels<NewsViewModel>()
     private val headLinesAdapter = HeadLinesAdapter()

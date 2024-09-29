@@ -1,4 +1,4 @@
-package com.example.domain.mappers
+package com.example.data.mappers
 
 import com.example.data.api.models.headlines.SourceDM
 import com.example.domain.models.headlines.Source

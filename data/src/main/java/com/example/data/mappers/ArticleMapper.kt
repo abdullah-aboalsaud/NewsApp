@@ -1,4 +1,4 @@
-package com.example.domain.mappers
+package com.example.data.mappers
 
 
 import com.example.data.api.models.news.ArticleDM
