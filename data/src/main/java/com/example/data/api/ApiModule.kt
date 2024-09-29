@@ -74,8 +74,8 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideNewsServices(retrofit: Retrofit): NewsServices {
-        return retrofit.create(NewsServices::class.java)
+    fun provideWebServices(retrofit: Retrofit): WebServices {
+        return retrofit.create(WebServices::class.java)
     }
 
 }

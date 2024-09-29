@@ -14,7 +14,7 @@ open class BaseViewModel : ViewModel() {
 
     fun <T> handelError(response: Response<T>) {
         val errorResponse =
-            response.errorBody()?.string()?.fromJson(BaseResponse::class.java)
+            response.errorBody()?.string()?.fromJson(BaseResponseDM::class.java)
         uiMessage.value = UiMessage(
             showLoading = false,
             showMessage = true,
@@ -26,7 +26,7 @@ open class BaseViewModel : ViewModel() {
     fun handelError(throwable: Throwable, posActionCallback: (() -> Unit)? = null) {
         if (throwable is HttpException) {
             val errorResponse =
-                throwable.response()?.errorBody()?.string()?.fromJson(BaseResponse::class.java)
+                throwable.response()?.errorBody()?.string()?.fromJson(BaseResponseDM::class.java)
             uiMessage.value = UiMessage(
                 showLoading = false,
                 message = errorResponse?.message,

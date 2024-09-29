@@ -1,38 +1,23 @@
-package com.example.data.api.model.news
+package com.example.domain.models.news
 
 import android.os.Parcelable
-import com.example.data.api.model.sources.SourcesItem
-import com.google.gson.annotations.SerializedName
+import com.example.domain.models.headlines.Source
 import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
 import java.util.Locale
 
 @Parcelize
-data class ArticlesItem(
+data class Article(
 
-    @field:SerializedName("publishedAt")
     val publishedAt: String? = null,
-
-    @field:SerializedName("author")
     val author: String? = null,
-
-    @field:SerializedName("urlToImage")
     val urlToImage: String? = null,
-
-    @field:SerializedName("description")
     val description: String? = null,
-
-    @field:SerializedName("source")
-    val source: SourcesItem? = null,
-
-    @field:SerializedName("title")
+    val source: Source? = null,
     val title: String? = null,
-
-    @field:SerializedName("url")
     val url: String? = null,
-
-    @field:SerializedName("content")
     val content: String? = null
+
 ) : Parcelable {
 
     fun formatDate(): String? {

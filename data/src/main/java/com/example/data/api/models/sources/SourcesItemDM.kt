@@ -1,11 +1,11 @@
-package com.example.data.api.model.sources
+package com.example.data.api.models.sources
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SourcesItem(
+data class SourcesItemDM(
 
     @field:SerializedName("country")
     val country: String? = null,

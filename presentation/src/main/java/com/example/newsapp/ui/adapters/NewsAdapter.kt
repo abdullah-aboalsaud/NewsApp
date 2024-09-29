@@ -6,10 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.bumptech.glide.Glide
+import com.example.domain.models.news.Article
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ItemNewsBinding
 
-class NewsAdapter(private var newsList: MutableList<com.example.data.api.model.news.ArticlesItem?> = mutableListOf()) :
+class NewsAdapter(private var newsList: MutableList<Article?> = mutableListOf()) :
     Adapter<NewsAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemNewsBinding.inflate(
@@ -29,13 +30,13 @@ class NewsAdapter(private var newsList: MutableList<com.example.data.api.model.n
         return newsList.size
     }
 
-    fun changeNewsList(articles: List<com.example.data.api.model.news.ArticlesItem?>?) {
+    fun changeNewsList(articles: List<Article?>?) {
         newsList = articles?.toMutableList() ?: mutableListOf()
         notifyDataSetChanged()
     }
 
     class ViewHolder(val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(article: com.example.data.api.model.news.ArticlesItem) {
+        fun bind(article: Article) {
             Glide.with(itemView)
                 .load(article.urlToImage)
                 .placeholder(R.drawable.progress_animation)

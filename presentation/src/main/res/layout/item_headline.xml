@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_article"
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY"
+            android:src="@tools:sample/backgrounds/scenic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="80dp"
+            android:background="@color/text_background"
+            android:fontFamily="@font/nunito"
+            android:text="created by ahmed mohsen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/iv_article"
+            app:layout_constraintTop_toTopOf="@id/iv_article" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:background="@color/text_background"
+            android:ellipsize="end"
+            android:fontFamily="@font/newyork_semi"
+            android:lines="3"
+            android:maxLines="3"
+            android:text="this is the title of the article coming from api for example  "
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/iv_article"
+            app:layout_constraintTop_toBottomOf="@id/tv_author"
+            app:layout_constraintWidth_percent=".9" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito"
+            android:lines="2"
+            android:maxLines="2"
+            android:text='\"this is the description  of the article that coming from api for example\"'
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_article"
+            app:layout_constraintStart_toStartOf="@id/iv_article"
+            app:layout_constraintWidth_percent=".95" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
