@@ -9,6 +9,6 @@ import kotlinx.parcelize.Parcelize
 data class SourcesResponseDM(
 
     @field:SerializedName("sources")
-    val sources: List<SourcesItem?>? = null,
+    val sources: List<SourcesItemDM?>? = null,
 
     ) : BaseResponse(), Parcelable
