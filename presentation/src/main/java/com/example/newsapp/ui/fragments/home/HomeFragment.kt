@@ -33,12 +33,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
+        setUpAdapterWithClick()
         observe()
     }
 
-    private fun initViews() {
+    private fun setUpAdapterWithClick() {
         binding.rvHeadline.adapter = headLinesAdapter
+
     }
 
     private fun observe() {
@@ -47,8 +48,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         }
     }
 
-    private fun showHeadLines(articles: List<Article?>?) {
-        headLinesAdapter.changeNewsList(articles)
-    }
+    private fun showHeadLines(articles: List<Article>?) {
 
+        headLinesAdapter.submitList(articles)
+
+    }
 }

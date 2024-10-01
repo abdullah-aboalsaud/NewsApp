@@ -8,7 +8,7 @@ import com.example.domain.repositories.NewsRepo
 import javax.inject.Inject
 
 class NewsRepoImpl @Inject constructor(
-    private val remoteDataSource: NewsRemoteDataSource,
+    private val remoteDataSource: NewsRemoteDataSource
 ) : NewsRepo {
 
     override suspend fun getHeadLines(language: String): List<Article>? {

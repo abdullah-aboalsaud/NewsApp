@@ -19,4 +19,5 @@ abstract class RepositoryModule {
         newsRepoImpl: NewsRepoImpl
     ): NewsRepo
 
+
 }

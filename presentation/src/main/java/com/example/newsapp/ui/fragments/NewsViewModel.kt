@@ -17,7 +17,7 @@ class NewsViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     //  val sourcesLiveData = MutableLiveData<List<SourcesItem?>?>()
-    val newsLiveData = MutableLiveData<List<Article?>?>()
+    val newsLiveData = MutableLiveData<List<Article>?>()
 
 
     fun getHeadLines(language: String) {

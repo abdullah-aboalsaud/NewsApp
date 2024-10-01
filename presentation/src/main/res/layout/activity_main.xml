@@ -22,7 +22,7 @@
         android:id="@+id/cv_bottom_nav_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="30dp"
         app:cardCornerRadius="40dp"
         app:cardElevation="30dp"
@@ -31,9 +31,10 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:itemIconSize="30dp"
+            style="@style/bottom_nav"
             app:itemIconTint="@drawable/nav_item_color"
             app:itemTextColor="@drawable/nav_item_color"
+            android:background="@color/white"
             app:menu="@menu/menu" />
 
     </androidx.cardview.widget.CardView>

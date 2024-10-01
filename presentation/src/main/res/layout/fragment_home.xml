@@ -17,12 +17,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="6dp"
-
             android:fontFamily="@font/newyork_semi"
             android:text="@string/latest_news"
             android:textColor="@color/black"
-            android:textSize="30sp"
+            android:paddingStart="4dp"
             android:textStyle="bold"
+            android:textSize="28sp"
             app:layout_constraintEnd_toStartOf="@id/tv_see_all"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

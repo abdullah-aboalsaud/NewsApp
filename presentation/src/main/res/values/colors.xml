@@ -6,6 +6,8 @@
     <color name="blue">#0080FF</color>
     <color name="hint_gray">#A6A6A6</color>
     <color name="text_background">#14000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="bottom_nav_background">@color/white</color>
 
     <color name="source_id">#79828B</color>
 </resources>

@@ -12,6 +12,7 @@ import com.example.newsapp.databinding.ItemNewsBinding
 
 class NewsAdapter(private var newsList: MutableList<Article?> = mutableListOf()) :
     Adapter<NewsAdapter.ViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemNewsBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -30,7 +31,7 @@ class NewsAdapter(private var newsList: MutableList<Article?> = mutableListOf())
         return newsList.size
     }
 
-    fun changeNewsList(articles: List<Article?>?) {
+    fun submitList(articles: List<Article?>?) {
         newsList = articles?.toMutableList() ?: mutableListOf()
         notifyDataSetChanged()
     }
