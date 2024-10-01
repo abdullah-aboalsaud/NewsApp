@@ -13,8 +13,9 @@
         android:id="@+id/category_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="50dp"
-        tools:background="@color/primary_red">
+        android:background="@color/primary_red"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="20dp">
 
         <TextView
             android:id="@+id/tv_title"
@@ -24,7 +25,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:fontFamily="@font/nunito_bold"
-            android:textSize="24sp"
+            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

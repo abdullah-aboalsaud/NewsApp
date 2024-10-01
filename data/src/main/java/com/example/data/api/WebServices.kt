@@ -20,6 +20,7 @@ interface WebServices {
 
     @GET("v2/top-headlines")
     suspend fun getHeadLines(
-        @Query("language") language: String
+        @Query("category") category: String
     ): HeadlineResponseDM
+
 }

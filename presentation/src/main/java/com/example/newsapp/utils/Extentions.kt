@@ -1,9 +1,12 @@
 package com.example.newsapp.utils
 
 import android.content.Context
+import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import com.example.newsapp.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
 
 
@@ -36,6 +39,16 @@ fun Context.showDialog(
 
 fun <T> String.fromJson(className: Class<T>): T {
     return Gson().fromJson(this, className)
+}
+
+fun Fragment.hideBottomNav() {
+    requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+        .visibility = View.GONE
+}
+
+fun Fragment.showBottomNav() {
+    requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+        .visibility = View.VISIBLE
 }
 
 

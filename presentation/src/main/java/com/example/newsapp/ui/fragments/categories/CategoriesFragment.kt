@@ -1,4 +1,4 @@
-package com.example.newsapp.ui.fragments.categories.all_categories
+package com.example.newsapp.ui.fragments.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.newsapp.R
 import com.example.newsapp.databinding.FragmentCategoriesBinding
+import com.example.newsapp.ui.models.CategoryModel
 import com.example.newsapp.utils.BUSINESS_CATEGORY
 import com.example.newsapp.utils.ENTERTAINMENT_CATEGORY
 import com.example.newsapp.utils.GENERAL_CATEGORY
@@ -15,13 +16,14 @@ import com.example.newsapp.utils.HEALTH_CATEGORY
 import com.example.newsapp.utils.SCIENCE_CATEGORY
 import com.example.newsapp.utils.SPORT_CATEGORY
 import com.example.newsapp.utils.TECHNOLOGY_CATEGORY
+import com.example.newsapp.utils.hideBottomNav
 
 
 class CategoriesFragment : Fragment() {
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
     val categoryAdapter = CategoriesAdapter()
-    private var categoriesList = mutableListOf<ModelCategory>()
+    private var categoriesList = mutableListOf<CategoryModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,41 +39,49 @@ class CategoriesFragment : Fragment() {
         setAdapterList()
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpAdapterWithClick()
     }
 
+    override fun onStart() {
+        super.onStart()
+        hideBottomNav()
+    }
+
     private fun setUpAdapterWithClick() {
         binding.recyclerCategory.adapter = categoryAdapter
-        categoryAdapter.onItemClick = CategoriesAdapter.OnItemClick { title ->
-            if (title == SPORT_CATEGORY) {
-                findNavController().navigate(CategoriesFragmentDirections.actionCategoriesFragmentToSprotsFragment())
-            }
+        categoryAdapter.onItemClick = CategoriesAdapter.OnItemClick { categoryTitle ->
+            findNavController().navigate(
+                CategoriesFragmentDirections.actionCategoriesFragmentToHomeFragment(
+                    categoryTitle
+                )
+            )
         }
 
     }
 
     private fun setAdapterList() {
         categoriesList.add(
-            ModelCategory(SPORT_CATEGORY, R.color.blue)
+            CategoryModel(SPORT_CATEGORY, R.color.primary_red)
         )
         categoriesList.add(
-            ModelCategory(TECHNOLOGY_CATEGORY, R.color.blue)
+            CategoryModel(TECHNOLOGY_CATEGORY, R.color.primary_red)
         )
         categoriesList.add(
-            ModelCategory(SCIENCE_CATEGORY, R.color.blue)
+            CategoryModel(SCIENCE_CATEGORY, R.color.primary_red)
         )
         categoriesList.add(
-            ModelCategory(HEALTH_CATEGORY, R.color.blue)
+            CategoryModel(HEALTH_CATEGORY, R.color.primary_red)
         )
         categoriesList.add(
-            ModelCategory(GENERAL_CATEGORY, R.color.blue)
+            CategoryModel(GENERAL_CATEGORY, R.color.primary_red)
         )
         categoriesList.add(
-            ModelCategory(ENTERTAINMENT_CATEGORY, R.color.blue)
+            CategoryModel(ENTERTAINMENT_CATEGORY, R.color.primary_red)
         )
         categoriesList.add(
-            ModelCategory(BUSINESS_CATEGORY, R.color.blue)
+            CategoryModel(BUSINESS_CATEGORY, R.color.primary_red)
         )
         categoryAdapter.submitList(categoriesList)
 

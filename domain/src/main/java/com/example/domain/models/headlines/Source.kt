@@ -6,5 +6,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Source(
     val name: String? = null,
-    val id: String? = null
+    val id: String? = null,
+    val color: Int? = null
 ) : Parcelable

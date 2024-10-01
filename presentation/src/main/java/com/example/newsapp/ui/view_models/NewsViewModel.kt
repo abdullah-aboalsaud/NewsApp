@@ -1,10 +1,11 @@
-package com.example.newsapp.ui.fragments
+package com.example.newsapp.ui.view_models
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-
+import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
 import com.example.domain.use_cases.GetHeadLinesUseCase
+import com.example.domain.use_cases.GetSourcesUseCase
 import com.example.newsapp.R
 import com.example.newsapp.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,18 +14,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    private val getSourcesUseCase: GetHeadLinesUseCase
+    private val getHeaLinesUseCase: GetHeadLinesUseCase,
+    private val getSourcesUseCase: GetSourcesUseCase
 ) : BaseViewModel() {
 
-    //  val sourcesLiveData = MutableLiveData<List<SourcesItem?>?>()
+    val sourcesLiveData = MutableLiveData<List<Source>?>()
     val newsLiveData = MutableLiveData<List<Article>?>()
 
 
-    fun getHeadLines(language: String) {
+    fun getHeadLines(category: String) {
         showLoading(messageId = R.string.loading)
         viewModelScope.launch {
             try {
-                val response = getSourcesUseCase.invoke(language)
+                val response = getHeaLinesUseCase.invoke(category)
                 hideLoading()
                 newsLiveData.value = response
             } catch (ex: Exception) {
@@ -35,19 +37,19 @@ class NewsViewModel @Inject constructor(
     }
 
 
-//    fun getNewsSources(category: String) {
-//        showLoading(messageId = R.string.loading)
-//        viewModelScope.launch() {
-//            try {
-//                val response = webServices.getNewsSources(category = category)
-//                hideLoading()
-//                sourcesLiveData.value = response.sources
-//            } catch (ex: Exception) {
-//                handelError(ex)
-//            }
-//
-//        }
-//    }
+    fun getNewsSources(category: String) {
+        showLoading(messageId = R.string.loading)
+        viewModelScope.launch() {
+            try {
+                val response = getSourcesUseCase.invoke(category = category)
+                hideLoading()
+                sourcesLiveData.value = response
+            } catch (ex: Exception) {
+                handelError(ex)
+            }
+
+        }
+    }
 
 
 //    fun getNewsBySourceId(sourceId: String) {

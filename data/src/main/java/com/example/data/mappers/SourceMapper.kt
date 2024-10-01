@@ -7,8 +7,8 @@ fun toSource(sourceDM: SourceDM?): Source {
     return Source(sourceDM?.name, sourceDM?.id)
 }
 
-fun toSourcesList(sourcesListDM: List<SourceDM>): List<Source> {
-    return sourcesListDM.map { sourceDM ->
+fun toSourcesList(sourcesListDM: List<SourceDM?>?): List<Source>? {
+    return sourcesListDM?.map { sourceDM ->
         toSource(sourceDM)
     }
 }

@@ -1,18 +1,19 @@
-package com.example.newsapp.ui.fragments.categories.all_categories
+package com.example.newsapp.ui.fragments.categories
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.newsapp.databinding.ItemCategoryBinding
+import com.example.newsapp.ui.models.CategoryModel
 
-class CategoriesAdapter(var categoryList: MutableList<ModelCategory>? = null) :
+class CategoriesAdapter(var categoryList: MutableList<CategoryModel>? = null) :
     Adapter<CategoriesAdapter.CategoryViewHolder>() {
     var onItemClick: OnItemClick? = null
 
     class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(category: ModelCategory?) {
+        fun bind(category: CategoryModel?) {
             binding.categoryContainer.setBackgroundResource(category!!.color)
             binding.tvTitle.text = category.title
         }
@@ -37,13 +38,13 @@ class CategoriesAdapter(var categoryList: MutableList<ModelCategory>? = null) :
         }
     }
 
-    fun submitList(categoryList: MutableList<ModelCategory>) {
+    fun submitList(categoryList: MutableList<CategoryModel>) {
         this.categoryList = categoryList
         notifyDataSetChanged()
     }
 
     fun interface OnItemClick {
-        fun onclick(title: String)
+        fun onclick(categoryTitle: String)
     }
 
 

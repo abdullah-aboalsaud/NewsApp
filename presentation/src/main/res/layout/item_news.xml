@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
+
             tools:src="@tools:sample/backgrounds/scenic" />
 
 
@@ -29,6 +30,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
+            android:background="@color/text_background"
             android:fontFamily="@font/nunito_bold"
             android:maxLines="1"
             android:textColor="@color/white"
@@ -60,6 +62,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
+            android:background="@color/text_background"
             android:fontFamily="@font/nunito_bold"
             android:maxLines="1"
             android:textColor="@color/white"

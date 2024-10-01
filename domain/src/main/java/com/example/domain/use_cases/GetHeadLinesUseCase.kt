@@ -9,8 +9,8 @@ class GetHeadLinesUseCase @Inject constructor(
     private val newsRepo: NewsRepo
 ) {
 
-    suspend fun invoke(language: String): List<Article>? {
-        return newsRepo.getHeadLines(language)
+    suspend fun invoke(category: String): List<Article>? {
+        return newsRepo.getHeadLines(category)
     }
 
 }
