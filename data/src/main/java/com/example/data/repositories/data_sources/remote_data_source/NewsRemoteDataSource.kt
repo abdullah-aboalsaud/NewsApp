@@ -18,7 +18,10 @@ class NewsRemoteDataSource @Inject constructor(
 
     suspend fun getSources(category: String): List<SourceDM?>?  {
         return webServices.getNewsSources(category).sources
+    }
 
+    suspend fun getArticlesBySourceId(sourceId: String):List<ArticleDM?>?{
+        return webServices.getArticlesBySourceId(sourceId).articles
     }
 
 }

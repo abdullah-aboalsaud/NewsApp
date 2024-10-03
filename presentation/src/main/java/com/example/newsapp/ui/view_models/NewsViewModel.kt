@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
+import com.example.domain.use_cases.GetArticlesBySourceIdUseCase
 import com.example.domain.use_cases.GetHeadLinesUseCase
 import com.example.domain.use_cases.GetSourcesUseCase
 import com.example.domain.utils.Result
@@ -16,11 +17,14 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsViewModel @Inject constructor(
     private val getHeaLinesUseCase: GetHeadLinesUseCase,
-    private val getSourcesUseCase: GetSourcesUseCase
+    private val getSourcesUseCase: GetSourcesUseCase,
+    private val getArticlesBySourceIdUseCase: GetArticlesBySourceIdUseCase
 ) : BaseViewModel() {
 
     val sourcesLiveData = MutableLiveData<Result<List<Source>?>>()
-    val newsLiveData = MutableLiveData<List<Article>?>()
+    val headLinesLiveData = MutableLiveData< Result<List<Article>?>>()
+    val articlesBySourceIdLiveData = MutableLiveData< Result<List<Article>?>>()
+
 
 
     fun getHeadLines(category: String) {
@@ -29,7 +33,7 @@ class NewsViewModel @Inject constructor(
             try {
                 val response = getHeaLinesUseCase.invoke(category)
                 hideLoading()
-                newsLiveData.value = response
+                headLinesLiveData.value = Result.Success(response)
             } catch (ex: Exception) {
                 handelError(ex)
             }
@@ -55,18 +59,18 @@ class NewsViewModel @Inject constructor(
     }
 
 
-//    fun getNewsBySourceId(sourceId: String) {
-//        showLoading(messageId = R.string.loading)
-//        viewModelScope.launch {
-//            try {
-//                val response = webServices.getNewsBySourceId(sourceId = sourceId)
-//                hideLoading()
-//                newsLiveData.value = response.articles
-//            } catch (ex: Exception) {
-//                handelError(ex)
-//            }
-//        }
-//
-//    }
+    fun getArticlesBySourceId(sourceId: String) {
+        articlesBySourceIdLiveData.value = Result.Loading()
+        viewModelScope.launch {
+            try {
+                val response = getArticlesBySourceIdUseCase.invoke(sourceId)
+                articlesBySourceIdLiveData.value = Result.Success(response)
+            } catch (ex: Exception) {
+               // handelError(ex)
+                articlesBySourceIdLiveData.value= Result.Error(ex.localizedMessage?:"")
+            }
+        }
+
+    }
 
 }

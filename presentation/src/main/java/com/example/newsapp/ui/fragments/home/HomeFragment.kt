@@ -5,13 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
 import com.example.domain.utils.Result
 import com.example.newsapp.R
 import com.example.newsapp.base.BaseFragment
 import com.example.newsapp.databinding.FragmentHomeBinding
+import com.example.newsapp.ui.adapters.ArticlesAdapter
 import com.example.newsapp.ui.adapters.HeadLinesAdapter
 import com.example.newsapp.ui.adapters.SourcesAdapter
 import com.example.newsapp.ui.adapters.CategoriesAdapter
@@ -24,7 +24,6 @@ import com.example.newsapp.utils.HEALTH_CATEGORY
 import com.example.newsapp.utils.SCIENCE_CATEGORY
 import com.example.newsapp.utils.SPORT_CATEGORY
 import com.example.newsapp.utils.TECHNOLOGY_CATEGORY
-import com.example.newsapp.utils.showBottomNav
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,6 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     private val newsViewModel by viewModels<NewsViewModel>()
     val categoryAdapter = CategoriesAdapter()
     private val headLinesAdapter = HeadLinesAdapter()
+    private val articlesAdapter = ArticlesAdapter()
     private val sourcesAdapter = SourcesAdapter()
     private var categoriesList = mutableListOf<CategoryModel>()
 
@@ -50,6 +50,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         setCategoryAdapterList()
         viewModel.getHeadLines(SPORT_CATEGORY)
         viewModel.getNewsSources(SPORT_CATEGORY)
+        viewModel.getArticlesBySourceId("bbc-sport")
+
 
     }
 
@@ -58,9 +60,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         setUpCategoryAdapterWithClick()
         setUpHeadLineAdapterWithClick()
+        setUpArticlesAdapterWithClick()
         setUpSourcesAdapterWithClick()
         observe()
     }
+
 
     private fun setUpCategoryAdapterWithClick() {
         binding.rvCategory.adapter = categoryAdapter
@@ -73,6 +77,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
     private fun setUpSourcesAdapterWithClick() {
         binding.rvSources.adapter = sourcesAdapter
+        sourcesAdapter.onItemClick = SourcesAdapter.OnItemClick { source ->
+            viewModel.getArticlesBySourceId(source.id?:"")
+        }
 
     }
 
@@ -82,18 +89,62 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         headLinesAdapter.onItemClick = HeadLinesAdapter.OnItemClick { article ->
             // navigate to Fragment details
         }
+    }
 
-
+    private fun setUpArticlesAdapterWithClick() {
+        binding.rvArticles.adapter = articlesAdapter
+        articlesAdapter.onItemClick = ArticlesAdapter.OnItemClick { article ->
+            // navigate to fragment details
+        }
     }
 
     private fun observe() {
-        viewModel.newsLiveData.observe(viewLifecycleOwner) { articlesList ->
-            showHeadLines(articlesList)
+        viewModel.headLinesLiveData.observe(viewLifecycleOwner) { result ->
+
+            when (result) {
+                is Result.Loading -> {
+                    showSourcesLoading()
+                }
+
+                is Result.Success -> {
+                    hideSourcesLoading()
+                    showHeadLines(result.data)
+                }
+
+                is Result.Error -> {
+                    hideSourcesLoading()
+                    // handel error
+                }
+
+                else -> Unit
+            }
+
+        }
+        viewModel.articlesBySourceIdLiveData.observe(viewLifecycleOwner) { result ->
+
+            when (result) {
+                is Result.Loading -> {
+                    //showArticlesLoading()
+                }
+
+                is Result.Success -> {
+                    //hideArticlesLoading()
+                    showArticlesBySourceId(result.data)
+                }
+
+                is Result.Error -> {
+                    //hideArticlesLoading()
+                    // handel error
+                }
+
+                else -> Unit
+            }
+
         }
         viewModel.sourcesLiveData.observe(viewLifecycleOwner) { it ->
             when (it) {
                 is Result.Loading -> {
-                      showSourcesLoading()
+                    showSourcesLoading()
                 }
 
                 is Result.Success -> {
@@ -102,7 +153,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
                 }
 
                 is Result.Error -> {
-                   hideSourcesLoading()
+                    hideSourcesLoading()
                 }
 
                 else -> Unit
@@ -115,6 +166,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     private fun showSourcesLoading() {
         binding.progressSources.visibility = View.VISIBLE
     }
+
     private fun hideSourcesLoading() {
         binding.progressSources.visibility = View.GONE
     }
@@ -125,6 +177,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
     private fun showHeadLines(articlesList: List<Article>?) {
         headLinesAdapter.submitList(articlesList)
+    }
+
+    private fun showArticlesBySourceId(articlesList: List<Article>?) {
+        articlesAdapter.submitList(articlesList)
     }
 
 

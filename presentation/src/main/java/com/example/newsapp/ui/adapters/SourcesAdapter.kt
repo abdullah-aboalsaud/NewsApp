@@ -15,7 +15,7 @@ class SourcesAdapter(private var sourcesList: MutableList<Source>? = mutableList
     Adapter<SourcesAdapter.ViewHolder>() {
     var onItemClick: OnItemClick? = null
 
-    private var selectedPosition = -1 // To track the selected item
+    private var selectedPosition = 0 // To track selected item (putting 0 to select first item)
 
     class ViewHolder(val binding: ItemSourceBinding) : RecyclerView.ViewHolder(binding.root) {
         val primaryRedColor =ContextCompat.getColor(binding.root.context,R.color.primary_red)
@@ -68,7 +68,8 @@ class SourcesAdapter(private var sourcesList: MutableList<Source>? = mutableList
 
     fun submitList(sources: List<Source>?) {
         sourcesList = sources?.toMutableList() ?: mutableListOf()
-        selectedPosition = -1 // Reset selection when submitting a new list
+        selectedPosition = 0 //putting 0 here to select first item
+        // if wanted to unselect all items put -1
         notifyDataSetChanged()
     }
 

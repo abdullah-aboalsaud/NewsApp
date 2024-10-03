@@ -10,9 +10,9 @@ import com.example.domain.models.news.Article
 import com.example.newsapp.R
 import com.example.newsapp.databinding.ItemNewsBinding
 
-class NewsAdapter(private var newsList: MutableList<Article?> = mutableListOf()) :
-    Adapter<NewsAdapter.ViewHolder>() {
-
+class ArticlesAdapter(private var newsList: MutableList<Article?> = mutableListOf()) :
+    Adapter<ArticlesAdapter.ViewHolder>() {
+    var onItemClick: OnItemClick? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemNewsBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -24,6 +24,11 @@ class NewsAdapter(private var newsList: MutableList<Article?> = mutableListOf())
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = newsList[position]
         article?.let { holder.bind(it) }
+        holder.itemView.setOnClickListener {
+            article?.let { article ->
+                onItemClick?.onclick(article)
+            }
+        }
 
     }
 
@@ -45,10 +50,12 @@ class NewsAdapter(private var newsList: MutableList<Article?> = mutableListOf())
             binding.tvTitle.text = article.title
             binding.tvAuthor.text = article.author
             binding.tvDate.text = article.formatDate()
-
         }
 
     }
 
+    fun interface OnItemClick {
+        fun onclick(article: Article)
+    }
 
 }
