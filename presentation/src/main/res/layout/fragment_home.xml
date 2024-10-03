@@ -10,13 +10,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp">
+        >
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="14dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_category" />
 
         <TextView
             android:id="@+id/tv_page_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="6dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="6dp"
             android:fontFamily="@font/newyork_semi"
             android:paddingStart="4dp"
             android:text="@string/top_headlines"
@@ -25,7 +36,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/tv_see_all"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/rv_category" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_see_all"
@@ -59,9 +70,8 @@
             android:id="@+id/rv_sources"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+           android:layout_marginTop="8dp"
             android:orientation="horizontal"
-            android:paddingVertical="4dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rv_headline"
             tools:listitem="@layout/item_source" />
@@ -76,6 +86,17 @@
             app:layout_constraintEnd_toEndOf="@id/rv_sources"
             app:layout_constraintStart_toStartOf="@id/rv_sources"
             app:layout_constraintTop_toTopOf="@id/rv_sources" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/rv_sources"
+            tools:listitem="@layout/item_news" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,6 +6,7 @@ import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
 import com.example.domain.use_cases.GetHeadLinesUseCase
 import com.example.domain.use_cases.GetSourcesUseCase
+import com.example.domain.utils.Result
 import com.example.newsapp.R
 import com.example.newsapp.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +19,7 @@ class NewsViewModel @Inject constructor(
     private val getSourcesUseCase: GetSourcesUseCase
 ) : BaseViewModel() {
 
-    val sourcesLiveData = MutableLiveData<List<Source>?>()
+    val sourcesLiveData = MutableLiveData<Result<List<Source>?>>()
     val newsLiveData = MutableLiveData<List<Article>?>()
 
 
@@ -38,14 +39,16 @@ class NewsViewModel @Inject constructor(
 
 
     fun getNewsSources(category: String) {
-        showLoading(messageId = R.string.loading)
+        sourcesLiveData.value = Result.Loading()
+
         viewModelScope.launch() {
             try {
                 val response = getSourcesUseCase.invoke(category = category)
-                hideLoading()
-                sourcesLiveData.value = response
+                sourcesLiveData.value = Result.Success(response)
+
             } catch (ex: Exception) {
-                handelError(ex)
+               // handelError(ex)
+                sourcesLiveData.value = Result.Error(ex.localizedMessage?:"")
             }
 
         }

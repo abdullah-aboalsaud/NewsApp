@@ -7,6 +7,7 @@ import com.example.data.repositories.data_sources.remote_data_source.NewsRemoteD
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
 import com.example.domain.repositories.NewsRepo
+import com.example.domain.utils.Result
 import javax.inject.Inject
 
 class NewsRepoImpl @Inject constructor(
