@@ -11,23 +11,25 @@ import com.example.newsapp.R
 
 class CategoriesAdapter(var categoryList: MutableList<CategoryModel>? = null) :
     RecyclerView.Adapter<CategoriesAdapter.CategoryViewHolder>() {
-    var onItemClick: OnItemClick? = null
 
-    private var selectedPosition = 0 // To track the selected item
+    lateinit var onItemClick: (String) -> Unit
+
+    private var selectedPosition = 0 // To track the selected item (0 to select first item)
+    // put -1 unselect all items
 
     class CategoryViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val primaryRedColor =ContextCompat.getColor(binding.root.context,R.color.primary_red)
-        val whiteColor =ContextCompat.getColor(binding.root.context,R.color.white)
-        val blackColor =ContextCompat.getColor(binding.root.context,R.color.black)
+        val primaryRedColor = ContextCompat.getColor(binding.root.context, R.color.primary_red)
+        val whiteColor = ContextCompat.getColor(binding.root.context, R.color.white)
+        val blackColor = ContextCompat.getColor(binding.root.context, R.color.black)
 
-        fun bind(category: CategoryModel?,isSelected: Boolean) {
+        fun bind(category: CategoryModel?, isSelected: Boolean) {
 
-            if(isSelected){
+            if (isSelected) {
                 binding.categoryContainer.setBackgroundColor(primaryRedColor)
                 binding.tvTitle.setTextColor(whiteColor)
-            }else{
+            } else {
                 binding.categoryContainer.setBackgroundColor(whiteColor)
                 binding.tvTitle.setTextColor(blackColor)
             }
@@ -50,11 +52,15 @@ class CategoriesAdapter(var categoryList: MutableList<CategoryModel>? = null) :
         return categoryList?.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: CategoryViewHolder, @SuppressLint("RecyclerView") position: Int) {
+    override fun onBindViewHolder(holder: CategoryViewHolder,
+        @SuppressLint("RecyclerView") position: Int) {
+
         val category = categoryList?.get(position)
-        holder.bind(category,position==selectedPosition)
+        holder.bind(category, position == selectedPosition)
+
         holder.itemView.setOnClickListener {
-            onItemClick?.onclick(category?.title ?: "")
+
+            onItemClick.invoke(category?.title?:"")
 
             if (position != selectedPosition) {
                 val previousPosition = selectedPosition
@@ -70,9 +76,6 @@ class CategoriesAdapter(var categoryList: MutableList<CategoryModel>? = null) :
         notifyDataSetChanged()
     }
 
-    fun interface OnItemClick {
-        fun onclick(categoryTitle: String)
-    }
 
 
 }

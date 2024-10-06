@@ -58,7 +58,6 @@ class NewsViewModel @Inject constructor(
         }
     }
 
-
     fun getArticlesBySourceId(sourceId: String) {
         articlesBySourceIdLiveData.value = Result.Loading()
         viewModelScope.launch {

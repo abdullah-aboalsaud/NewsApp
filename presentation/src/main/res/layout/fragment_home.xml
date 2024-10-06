@@ -34,6 +34,7 @@
             android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/rv_headline"
             app:layout_constraintEnd_toStartOf="@id/tv_see_all"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rv_category" />
@@ -62,6 +63,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="4dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/rv_sources"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/tv_page_title"
             tools:listitem="@layout/item_headline" />
@@ -72,6 +74,7 @@
             android:layout_height="wrap_content"
            android:layout_marginTop="8dp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/rv_articles"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rv_headline"
             tools:listitem="@layout/item_source" />
@@ -91,7 +94,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_articles"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent=".7"
             android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/rv_sources"
