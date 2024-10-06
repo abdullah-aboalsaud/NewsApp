@@ -45,7 +45,7 @@ class ArticlesAdapter(private var newsList: MutableList<Article?> = mutableListO
         fun bind(article: Article) {
             Glide.with(itemView)
                 .load(article.urlToImage)
-                .placeholder(R.drawable.progress_animation)
+                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(binding.ivNews)
             binding.tvTitle.text = article.title
             binding.tvAuthor.text = article.author

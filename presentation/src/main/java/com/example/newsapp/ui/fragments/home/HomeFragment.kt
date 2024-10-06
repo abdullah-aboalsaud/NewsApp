@@ -68,17 +68,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
     private fun setUpCategoryAdapterWithClick() {
         binding.rvCategory.adapter = categoryAdapter
-        categoryAdapter.onItemClick = CategoriesAdapter.OnItemClick { categoryTitle ->
+
+        categoryAdapter.onItemClick = { categoryTitle ->
             viewModel.getHeadLines(categoryTitle)
             viewModel.getNewsSources(categoryTitle)
-
         }
+
+
     }
 
     private fun setUpSourcesAdapterWithClick() {
         binding.rvSources.adapter = sourcesAdapter
         sourcesAdapter.onItemClick = SourcesAdapter.OnItemClick { source ->
-            viewModel.getArticlesBySourceId(source.id?:"")
+            viewModel.getArticlesBySourceId(source.id ?: "")
         }
 
     }
@@ -149,6 +151,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
                 is Result.Success -> {
                     hideSourcesLoading()
+                    val firstSource = it.data?.get(0)?.id
+                    viewModel.getArticlesBySourceId(firstSource.toString())
                     showSources(it.data)
                 }
 
@@ -206,6 +210,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         categoriesList.add(
             CategoryModel(BUSINESS_CATEGORY, R.color.primary_red)
         )
+
         categoryAdapter.submitList(categoriesList)
 
     }
