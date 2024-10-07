@@ -11,7 +11,8 @@ import com.example.newsapp.databinding.ItemHeadlineBinding
 
 class HeadLinesAdapter(private var articlesList: MutableList<Article?> = mutableListOf()) :
     Adapter<HeadLinesAdapter.ViewHolder>() {
-    var onItemClick: OnItemClick? = null
+
+    var onItemClick: ( (Article) -> Unit )? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemHeadlineBinding.inflate(
@@ -26,7 +27,7 @@ class HeadLinesAdapter(private var articlesList: MutableList<Article?> = mutable
         article?.let { holder.bind(it) }
         holder.itemView.setOnClickListener {
             article?.let { article ->
-                onItemClick?.onclick(article)
+                onItemClick?.invoke(article)
             }
         }
 
@@ -46,7 +47,7 @@ class HeadLinesAdapter(private var articlesList: MutableList<Article?> = mutable
 
             Glide.with(itemView)
                 .load(article.urlToImage)
-                .placeholder(R.drawable.progress_animation)
+                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(binding.ivArticle)
 
             binding.tvTitle.text = article.title
@@ -55,10 +56,6 @@ class HeadLinesAdapter(private var articlesList: MutableList<Article?> = mutable
 
         }
 
-    }
-
-    fun interface OnItemClick {
-        fun onclick(article: Article)
     }
 
 

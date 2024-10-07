@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.newsapp.DetailsFragment"
+        android:name="com.example.newsapp.ui.fragments.details.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
         <argument

@@ -98,4 +98,6 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel> : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }
