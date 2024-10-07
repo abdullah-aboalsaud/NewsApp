@@ -15,6 +15,8 @@ import com.example.newsapp.base.BaseFragment
 import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.databinding.FragmentDetailsBinding
 
+import com.example.newsapp.utils.hideBottomNav
+
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding, BaseViewModel>() {
     val args by navArgs<DetailsFragmentArgs>()
@@ -30,9 +32,11 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, BaseViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideBottomNav()
         initViews()
         onclicks()
     }
+
 
     private fun onclicks() {
         binding.tvUrl.setOnClickListener{
@@ -57,7 +61,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding, BaseViewModel>() {
 
 
         binding.apply {
-            collapsingToolBar.title = args.Article.source?.name
+            collapsingToolBar.title = args.Article.author
             tvArticleTitle.text = args.Article.title
             tvDescription.text = args.Article.description
             tvUrl.text = underlinedText

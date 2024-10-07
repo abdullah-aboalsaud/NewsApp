@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.example.newsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,11 +43,11 @@ fun <T> String.fromJson(className: Class<T>): T {
 }
 
 fun Fragment.hideBottomNav() {
-    requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+    requireActivity().findViewById<CardView>(R.id.cv_bottom_nav_container)
         .visibility = View.GONE
 }
 
 fun Fragment.showBottomNav() {
-    requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
+    requireActivity().findViewById<CardView>(R.id.cv_bottom_nav_container)
         .visibility = View.VISIBLE
 }
