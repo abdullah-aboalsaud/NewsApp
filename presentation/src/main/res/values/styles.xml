@@ -7,7 +7,15 @@
     </style>
 
     <style name="bottom_nav" parent="Widget.MaterialComponents.BottomNavigationView">
-
     </style>
+
+    <style name="CircularShapeOverlay" >
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="backgroundTint">@color/primary_red</item>
+        <item name="tint">@color/white</item>
+        <item name="shapeAppearanceOverlay">@style/CircularShapeOverlay</item>
+    </style>
+
 
 </resources>
