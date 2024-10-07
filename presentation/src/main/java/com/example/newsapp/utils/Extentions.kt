@@ -50,6 +50,3 @@ fun Fragment.showBottomNav() {
     requireActivity().findViewById<BottomNavigationView>(R.id.bottom_nav)
         .visibility = View.VISIBLE
 }
-
-
-

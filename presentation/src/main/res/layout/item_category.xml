@@ -2,30 +2,30 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="10dp"
-    android:layout_marginVertical="14dp"
-    app:cardCornerRadius="50dp"
-    app:cardElevation="30dp">
+    android:layout_marginHorizontal="6dp"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/category_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary_red"
-        android:paddingHorizontal="2dp"
-        android:paddingVertical="20dp">
+        android:background="@color/primary_red">
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@android:color/transparent"
             android:gravity="center"
             android:textColor="@color/white"
-            android:fontFamily="@font/nunito_bold"
-            android:textSize="22sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

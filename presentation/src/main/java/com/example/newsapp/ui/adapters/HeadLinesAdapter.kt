@@ -43,10 +43,12 @@ class HeadLinesAdapter(private var articlesList: MutableList<Article?> = mutable
 
     class ViewHolder(val binding: ItemHeadlineBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(article: Article) {
+
             Glide.with(itemView)
                 .load(article.urlToImage)
                 .placeholder(R.drawable.progress_animation)
                 .into(binding.ivArticle)
+
             binding.tvTitle.text = article.title
             binding.tvAuthor.text = article.author
             binding.tvDescription.text = article.description
