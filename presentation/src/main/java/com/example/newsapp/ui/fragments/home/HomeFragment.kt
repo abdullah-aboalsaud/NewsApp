@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
 import com.example.domain.utils.Result
@@ -88,15 +89,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     private fun setUpHeadLineAdapterWithClick() {
         binding.rvHeadline.adapter = headLinesAdapter
 
-        headLinesAdapter.onItemClick = HeadLinesAdapter.OnItemClick { article ->
-            // navigate to Fragment details
+        headLinesAdapter.onItemClick =  { article ->
+            findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article))
         }
     }
 
     private fun setUpArticlesAdapterWithClick() {
         binding.rvArticles.adapter = articlesAdapter
-        articlesAdapter.onItemClick = ArticlesAdapter.OnItemClick { article ->
-            // navigate to fragment details
+        articlesAdapter.onItemClick = { article ->
+            findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article))
         }
     }
 

@@ -12,7 +12,9 @@ import com.example.newsapp.databinding.ItemNewsBinding
 
 class ArticlesAdapter(private var newsList: MutableList<Article?> = mutableListOf()) :
     Adapter<ArticlesAdapter.ViewHolder>() {
-    var onItemClick: OnItemClick? = null
+
+    var onItemClick : ((Article)-> Unit) ?=null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemNewsBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -26,7 +28,7 @@ class ArticlesAdapter(private var newsList: MutableList<Article?> = mutableListO
         article?.let { holder.bind(it) }
         holder.itemView.setOnClickListener {
             article?.let { article ->
-                onItemClick?.onclick(article)
+                onItemClick?.invoke(article)
             }
         }
 
@@ -54,8 +56,5 @@ class ArticlesAdapter(private var newsList: MutableList<Article?> = mutableListO
 
     }
 
-    fun interface OnItemClick {
-        fun onclick(article: Article)
-    }
 
 }
