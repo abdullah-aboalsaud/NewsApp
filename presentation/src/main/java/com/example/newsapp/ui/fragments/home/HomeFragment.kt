@@ -9,9 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
 import com.example.domain.utils.Result
-import com.example.newsapp.R
 import com.example.newsapp.base.BaseFragment
 import com.example.newsapp.databinding.FragmentHomeBinding
+import com.example.newsapp.ui.models.ArticlesList
 import com.example.newsapp.ui.adapters.ArticlesAdapter
 import com.example.newsapp.ui.adapters.HeadLinesAdapter
 import com.example.newsapp.ui.adapters.SourcesAdapter
@@ -64,7 +64,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         setUpArticlesAdapterWithClick()
         setUpSourcesAdapterWithClick()
         observe()
+
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -109,19 +111,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
     private fun observe() {
         viewModel.headLinesLiveData.observe(viewLifecycleOwner) { result ->
-
             when (result) {
                 is Result.Loading -> {
-                    showSourcesLoading()
+                    // showLoading
                 }
 
                 is Result.Success -> {
-                    hideSourcesLoading()
+                    // hideLoading
                     showHeadLines(result.data)
+                    onSeeAllClick(result.data)
                 }
 
                 is Result.Error -> {
-                    hideSourcesLoading()
+                    // hideLoading
                     // handel error
                 }
 
@@ -172,6 +174,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
         }
 
+    }
+
+    private fun onSeeAllClick(articles: List<Article>?) {
+        binding.tvSeeAll.setOnClickListener {
+            findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(ArticlesList(articles)))
+        }
     }
 
     private fun showSourcesLoading() {

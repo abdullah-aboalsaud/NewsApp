@@ -14,7 +14,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.newsapp.ui.fragments.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_seeAllFragment"
+            app:destination="@id/seeAllFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment"
         android:name="com.example.newsapp.ui.fragments.favorite.FavoriteFragment"
@@ -35,5 +39,14 @@
         <argument
             android:name="Article"
             app:argType="com.example.domain.models.news.Article" />
+    </fragment>
+    <fragment
+        android:id="@+id/seeAllFragment"
+        android:name="com.example.newsapp.ui.fragments.see_all.SeeAllFragment"
+        android:label="fragment_see_all"
+        tools:layout="@layout/fragment_see_all" >
+        <argument
+            android:name="ArticlesList"
+            app:argType="com.example.newsapp.ui.models.ArticlesList" />
     </fragment>
 </navigation>

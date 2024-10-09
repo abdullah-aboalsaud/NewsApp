@@ -17,7 +17,7 @@
             app:contentScrim="@color/primary_red"
             app:collapsedTitleTextColor="@color/white"
             app:expandedTitleTextColor="@color/white"
-            tools:title="the title"
+            tools:title="Auther"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <ImageView
