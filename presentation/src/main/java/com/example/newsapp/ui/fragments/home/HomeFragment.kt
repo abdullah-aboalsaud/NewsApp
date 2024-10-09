@@ -25,6 +25,7 @@ import com.example.newsapp.utils.HEALTH_CATEGORY
 import com.example.newsapp.utils.SCIENCE_CATEGORY
 import com.example.newsapp.utils.SPORT_CATEGORY
 import com.example.newsapp.utils.TECHNOLOGY_CATEGORY
+import com.example.newsapp.utils.showBottomNav
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -49,9 +50,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setCategoryAdapterList()
-        viewModel.getHeadLines(SPORT_CATEGORY)
-        viewModel.getNewsSources(SPORT_CATEGORY)
-        viewModel.getArticlesBySourceId("bbc-sport")
+        viewModel.getHeadLines(GENERAL_CATEGORY)
+        viewModel.getNewsSources(GENERAL_CATEGORY)
 
 
     }
@@ -66,6 +66,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         observe()
     }
 
+    override fun onResume() {
+        super.onResume()
+        showBottomNav()
+    }
 
     private fun setUpCategoryAdapterWithClick() {
         binding.rvCategory.adapter = categoryAdapter
@@ -89,9 +93,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     private fun setUpHeadLineAdapterWithClick() {
         binding.rvHeadline.adapter = headLinesAdapter
 
-        headLinesAdapter.onItemClick =  { article ->
+        headLinesAdapter.onItemClick = { article ->
             findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article))
+                .navigate(HomeFragmentDirections.actionGlobalToDetailsFragment(article))
         }
     }
 
@@ -99,7 +103,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         binding.rvArticles.adapter = articlesAdapter
         articlesAdapter.onItemClick = { article ->
             findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToDetailsFragment(article))
+                .navigate(HomeFragmentDirections.actionGlobalToDetailsFragment(article))
         }
     }
 
@@ -192,30 +196,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
 
 
     private fun setCategoryAdapterList() {
-        categoriesList.add(
-            CategoryModel(SPORT_CATEGORY, R.color.primary_red)
-        )
-        categoriesList.add(
-            CategoryModel(TECHNOLOGY_CATEGORY, R.color.primary_red)
-        )
-        categoriesList.add(
-            CategoryModel(SCIENCE_CATEGORY, R.color.primary_red)
-        )
-        categoriesList.add(
-            CategoryModel(HEALTH_CATEGORY, R.color.primary_red)
-        )
-        categoriesList.add(
-            CategoryModel(GENERAL_CATEGORY, R.color.primary_red)
-        )
-        categoriesList.add(
-            CategoryModel(ENTERTAINMENT_CATEGORY, R.color.primary_red)
-        )
-        categoriesList.add(
-            CategoryModel(BUSINESS_CATEGORY, R.color.primary_red)
-        )
-
+        categoriesList.add(CategoryModel(GENERAL_CATEGORY))
+        categoriesList.add(CategoryModel(SPORT_CATEGORY))
+        categoriesList.add(CategoryModel(TECHNOLOGY_CATEGORY))
+        categoriesList.add(CategoryModel(SCIENCE_CATEGORY))
+        categoriesList.add(CategoryModel(HEALTH_CATEGORY))
+        categoriesList.add(CategoryModel(ENTERTAINMENT_CATEGORY))
+        categoriesList.add(CategoryModel(BUSINESS_CATEGORY))
+        // submit the list to adapter
         categoryAdapter.submitList(categoriesList)
-
     }
 
 
