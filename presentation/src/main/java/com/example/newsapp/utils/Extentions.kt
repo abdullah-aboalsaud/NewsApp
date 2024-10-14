@@ -2,10 +2,12 @@ package com.example.newsapp.utils
 
 import android.content.Context
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.gson.Gson
@@ -50,4 +52,14 @@ fun Fragment.hideBottomNav() {
 fun Fragment.showBottomNav() {
     requireActivity().findViewById<CardView>(R.id.cv_bottom_nav_container)
         .visibility = View.VISIBLE
+}
+
+fun Fragment.showPlaceHolder(recycler: RecyclerView,  placeholder: TextView) {
+    recycler.visibility = View.GONE
+    placeholder.visibility = View.VISIBLE
+}
+
+fun Fragment.hidePlaceHolder(recycler: RecyclerView,  placeholder: TextView) {
+    recycler.visibility = View.VISIBLE
+    placeholder.visibility = View.GONE
 }

@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
-import com.example.domain.utils.Result
 import com.example.newsapp.base.BaseFragment
 import com.example.newsapp.databinding.FragmentHomeBinding
 import com.example.newsapp.ui.models.ArticlesList
@@ -25,7 +24,9 @@ import com.example.newsapp.utils.HEALTH_CATEGORY
 import com.example.newsapp.utils.SCIENCE_CATEGORY
 import com.example.newsapp.utils.SPORT_CATEGORY
 import com.example.newsapp.utils.TECHNOLOGY_CATEGORY
+import com.example.newsapp.utils.hidePlaceHolder
 import com.example.newsapp.utils.showBottomNav
+import com.example.newsapp.utils.showPlaceHolder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,7 +53,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
         setCategoryAdapterList()
         viewModel.getHeadLines(GENERAL_CATEGORY)
         viewModel.getNewsSources(GENERAL_CATEGORY)
-
 
     }
 
@@ -110,86 +110,49 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, NewsViewModel>() {
     }
 
     private fun observe() {
+
         viewModel.headLinesLiveData.observe(viewLifecycleOwner) { result ->
-            when (result) {
-                is Result.Loading -> {
-                    // showLoading
-                }
-
-                is Result.Success -> {
-                    // hideLoading
-                    showHeadLines(result.data)
-                    onSeeAllClick(result.data)
-                }
-
-                is Result.Error -> {
-                    // hideLoading
-                    // handel error
-                }
-
-                else -> Unit
-            }
-
+            showHeadLines(result)
+            onSeeAllClick(result)
         }
         viewModel.articlesBySourceIdLiveData.observe(viewLifecycleOwner) { result ->
-
-            when (result) {
-                is Result.Loading -> {
-                    //showArticlesLoading()
-                }
-
-                is Result.Success -> {
-                    //hideArticlesLoading()
-                    showArticlesBySourceId(result.data)
-                }
-
-                is Result.Error -> {
-                    //hideArticlesLoading()
-                    // handel error
-                }
-
-                else -> Unit
+            if (result.isNullOrEmpty()) {
+                showPlaceHolder(binding.rvArticles, binding.tvArticlesPlaceholder)
+            } else {
+                hidePlaceHolder(binding.rvArticles, binding.tvArticlesPlaceholder)
+                showArticlesBySourceId(result)
             }
 
         }
-        viewModel.sourcesLiveData.observe(viewLifecycleOwner) { it ->
-            when (it) {
-                is Result.Loading -> {
-                    showSourcesLoading()
-                }
-
-                is Result.Success -> {
-                    hideSourcesLoading()
-                    val firstSource = it.data?.get(0)?.id
-                    viewModel.getArticlesBySourceId(firstSource.toString())
-                    showSources(it.data)
-                }
-
-                is Result.Error -> {
-                    hideSourcesLoading()
-                }
-
-                else -> Unit
-            }
-
+        viewModel.sourcesLiveData.observe(viewLifecycleOwner) { sourcesList ->
+            val firstSource = sourcesList?.get(0)?.id
+            viewModel.getArticlesBySourceId(firstSource.toString())
+            showSources(sourcesList)
+        }
+        viewModel.isLoadingArticles.observe(viewLifecycleOwner) { isLoading ->
+            showHideArticlesLoading(isLoading)
         }
 
     }
+
 
     private fun onSeeAllClick(articles: List<Article>?) {
         binding.tvSeeAll.setOnClickListener {
             findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(ArticlesList(articles)))
+                .navigate(
+                    HomeFragmentDirections.actionHomeFragmentToSeeAllFragment(
+                        ArticlesList(
+                            articles
+                        )
+                    )
+                )
         }
     }
 
-    private fun showSourcesLoading() {
-        binding.progressSources.visibility = View.VISIBLE
+    private fun showHideArticlesLoading(isLoading: Boolean) {
+        binding.progressArticles.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun hideSourcesLoading() {
-        binding.progressSources.visibility = View.GONE
-    }
 
     private fun showSources(sourcesList: List<Source>?) {
         sourcesAdapter.submitList(sourcesList)

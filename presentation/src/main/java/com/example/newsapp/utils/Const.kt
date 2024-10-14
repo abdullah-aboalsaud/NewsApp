@@ -8,6 +8,7 @@ const val HEALTH_CATEGORY = "health"
 const val GENERAL_CATEGORY = "general"
 const val ENTERTAINMENT_CATEGORY = "entertainment"
 const val BUSINESS_CATEGORY = "business"
+const val SEARCH_NEWS_TIME_DELAY="500L"
 
 
 

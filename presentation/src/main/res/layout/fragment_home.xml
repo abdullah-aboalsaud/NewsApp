@@ -4,20 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
     tools:context=".ui.fragments.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="14dp"
+            android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_category" />
@@ -26,10 +24,9 @@
             android:id="@+id/tv_page_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="14dp"
-            android:layout_marginStart="6dp"
             android:fontFamily="@font/newyork_semi"
-            android:paddingStart="4dp"
             android:text="@string/top_headlines"
             android:textColor="@color/black"
             android:textSize="28sp"
@@ -63,8 +60,8 @@
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="4dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/rv_sources"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/rv_sources"
             app:layout_constraintTop_toBottomOf="@id/tv_page_title"
             tools:listitem="@layout/item_headline" />
 
@@ -72,35 +69,49 @@
             android:id="@+id/rv_sources"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-           android:layout_marginTop="8dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/rv_articles"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/rv_articles"
             app:layout_constraintTop_toBottomOf="@id/rv_headline"
             tools:listitem="@layout/item_source" />
 
         <ProgressBar
-            android:id="@+id/progress_sources"
+            android:id="@+id/progress_articles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminateTint="@color/primary_red"
+            android:layout_marginTop="10dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/rv_sources"
-            app:layout_constraintEnd_toEndOf="@id/rv_sources"
-            app:layout_constraintStart_toStartOf="@id/rv_sources"
-            app:layout_constraintTop_toTopOf="@id/rv_sources" />
+            android:indeterminateTint="@color/primary_red"
+            app:layout_constraintEnd_toEndOf="@id/rv_articles"
+            app:layout_constraintStart_toStartOf="@id/rv_articles"
+            app:layout_constraintTop_toTopOf="@id/rv_articles" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_articles"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent=".7"
-            android:layout_marginTop="8dp"
+           android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintHeight_percent=".7"
             app:layout_constraintTop_toBottomOf="@id/rv_sources"
             tools:listitem="@layout/item_news" />
 
+        <TextView
+            android:id="@+id/tv_articles_placeholder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            app:drawableTop="@drawable/ic_launcher_foreground"
+            android:gravity="bottom"
+            android:text="@string/news_not_found"
+            android:textColor="@color/primary_red"
+            android:textSize="20sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/rv_articles"
+            app:layout_constraintStart_toStartOf="@id/rv_articles"
+            app:layout_constraintTop_toTopOf="@id/rv_articles" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,17 +1,14 @@
 package com.example.domain.use_cases
 
-
 import com.example.domain.models.news.Article
 import com.example.domain.repositories.NewsRepo
 import com.example.domain.utils.Resource
 import javax.inject.Inject
 
-class GetHeadLinesUseCase @Inject constructor(
+class SearchForNewsUseCase @Inject constructor(
     private val newsRepo: NewsRepo
 ) {
-
-    suspend fun invoke(category: String): Resource<List<Article>?> {
-        return newsRepo.getHeadLines(category)
+    suspend fun invoke(searchQuery: String): Resource<List<Article>?> {
+        return newsRepo.searchForNews(searchQuery)
     }
-
 }

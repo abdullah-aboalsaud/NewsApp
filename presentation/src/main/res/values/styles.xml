@@ -17,5 +17,7 @@
         <item name="shapeAppearanceOverlay">@style/CircularShapeOverlay</item>
     </style>
 
+    <style name="textInputLayout" parent="Widget.Material3.TextInputLayout.OutlinedBox.Dense">
 
+    </style>
 </resources>

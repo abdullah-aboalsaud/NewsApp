@@ -23,7 +23,7 @@
         android:text="@string/all_news"
         android:fontFamily="@font/nunito_bold"
         android:textColor="@color/primary_red"
-        android:textSize="20dp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/iv_btn_back"

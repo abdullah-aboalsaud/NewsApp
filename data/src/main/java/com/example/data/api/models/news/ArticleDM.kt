@@ -2,6 +2,8 @@ package com.example.data.api.models.news
 
 import android.os.Parcelable
 import com.example.data.api.models.headlines.SourceDM
+import com.example.data.mappers.ArticleMapper.Companion.toArticle
+import com.example.domain.models.news.Article
 import kotlinx.parcelize.Parcelize
 
 
@@ -17,4 +19,10 @@ data class ArticleDM(
     val url: String? = null,
     val content: String? = null
 
-) : Parcelable
+) : Parcelable{
+    fun toArticleList(articlesListDM: List<ArticleDM?>?): List<Article>? {
+        return articlesListDM?.map { articleDM ->
+            toArticle(articleDM)
+        }
+    }
+}

@@ -17,5 +17,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="all_news">All News</string>
     <string name="published_by">Published by</string>
+    <string name="news_not_found">news not found !</string>
+    <string name="search_news_hint">search news…</string>
 
 </resources>

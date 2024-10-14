@@ -23,4 +23,10 @@ interface WebServices {
         @Query("category") category: String
     ): HeadlineResponseDM
 
+    @GET("v2/everything")
+    suspend fun searchForNews(
+        @Query("q")
+        searchQuery: String
+    ):NewsResponseDM
+
 }

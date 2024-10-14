@@ -1,5 +1,6 @@
 package com.example.newsapp.ui.view_models
 
+import android.util.Printer
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.domain.models.headlines.Source
@@ -7,7 +8,8 @@ import com.example.domain.models.news.Article
 import com.example.domain.use_cases.GetArticlesBySourceIdUseCase
 import com.example.domain.use_cases.GetHeadLinesUseCase
 import com.example.domain.use_cases.GetSourcesUseCase
-import com.example.domain.utils.Result
+import com.example.domain.use_cases.SearchForNewsUseCase
+import com.example.domain.utils.Resource
 import com.example.newsapp.R
 import com.example.newsapp.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,24 +20,24 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val getHeaLinesUseCase: GetHeadLinesUseCase,
     private val getSourcesUseCase: GetSourcesUseCase,
-    private val getArticlesBySourceIdUseCase: GetArticlesBySourceIdUseCase
+    private val getArticlesBySourceIdUseCase: GetArticlesBySourceIdUseCase,
+    private val searchForNewsUseCase: SearchForNewsUseCase
 ) : BaseViewModel() {
 
-    val sourcesLiveData = MutableLiveData<Result<List<Source>?>>()
-    val headLinesLiveData = MutableLiveData< Result<List<Article>?>>()
-    val articlesBySourceIdLiveData = MutableLiveData< Result<List<Article>?>>()
-
+    val sourcesLiveData = MutableLiveData<List<Source>?>()
+    val headLinesLiveData = MutableLiveData<List<Article>?>()
+    val articlesBySourceIdLiveData = MutableLiveData<List<Article>?>()
+    val searchLiveData = MutableLiveData<List<Article>?>()
+    val isLoadingArticles = MutableLiveData<Boolean>()
 
 
     fun getHeadLines(category: String) {
-        showLoading(messageId = R.string.loading)
+        showLoading()
         viewModelScope.launch {
-            try {
-                val response = getHeaLinesUseCase.invoke(category)
-                hideLoading()
-                headLinesLiveData.value = Result.Success(response)
-            } catch (ex: Exception) {
-                handelError(ex)
+            val response = getHeaLinesUseCase.invoke(category)
+            when (response) {
+                is Resource.Failure -> handelError(response.throwable)
+                is Resource.Success -> headLinesLiveData.value = response.data
             }
         }
 
@@ -43,33 +45,53 @@ class NewsViewModel @Inject constructor(
 
 
     fun getNewsSources(category: String) {
-        sourcesLiveData.value = Result.Loading()
-
+        showLoading()
         viewModelScope.launch() {
-            try {
-                val response = getSourcesUseCase.invoke(category = category)
-                sourcesLiveData.value = Result.Success(response)
-
-            } catch (ex: Exception) {
-               // handelError(ex)
-                sourcesLiveData.value = Result.Error(ex.localizedMessage?:"")
+            val response = getSourcesUseCase.invoke(category = category)
+            when (response) {
+                is Resource.Failure -> handelError(response.throwable)
+                is Resource.Success -> sourcesLiveData.value = response.data
             }
-
         }
     }
 
     fun getArticlesBySourceId(sourceId: String) {
-        articlesBySourceIdLiveData.value = Result.Loading()
+        isLoadingArticles.value = true
         viewModelScope.launch {
-            try {
-                val response = getArticlesBySourceIdUseCase.invoke(sourceId)
-                articlesBySourceIdLiveData.value = Result.Success(response)
-            } catch (ex: Exception) {
-               // handelError(ex)
-                articlesBySourceIdLiveData.value= Result.Error(ex.localizedMessage?:"")
+            val response = getArticlesBySourceIdUseCase.invoke(sourceId)
+            when (response) {
+                is Resource.Failure -> {
+                    isLoadingArticles.value = false
+                    handelError(response.throwable)
+                }
+                is Resource.Success -> {
+                    isLoadingArticles.value = false
+                    articlesBySourceIdLiveData.postValue(response.data)
+                }
             }
-        }
 
+        }
     }
+
+    fun searchForNews(searchQuery: String) {
+        isLoadingArticles.value = true
+        viewModelScope.launch {
+            val response = searchForNewsUseCase.invoke(searchQuery)
+            when (response) {
+                is Resource.Failure -> {
+                    isLoadingArticles.value = false
+                    handelError(response.throwable)
+                }
+
+                is Resource.Success -> {
+                    isLoadingArticles.value = false
+                    searchLiveData.value = response.data
+                }
+            }
+
+        }
+    }
+
+
 
 }
