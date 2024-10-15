@@ -38,7 +38,7 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, FavoriteViewModel
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.articles.collect { articles ->
-                    // Update your RecyclerView adapter with the articles list
+                    // Update RecyclerView adapter with the articles list
                 }
 
             }
