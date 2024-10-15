@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
+    id("androidx.room")
     kotlin("kapt")
 }
 
@@ -26,6 +27,9 @@ android {
             )
         }
     }
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -34,6 +38,7 @@ android {
         jvmTarget = "1.8"
     }
 }
+
 kapt {
     correctErrorTypes = true
 }
@@ -59,4 +64,12 @@ dependencies {
     implementation(libs.retrofit)
     // gson converter
     implementation(libs.converter.gson)
+
+    // room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+
+
 }

@@ -1,6 +1,8 @@
-package com.example.data.di
+package com.example.data.repositories.di
 
+import com.example.data.repositories.FavoriteRepoImpl
 import com.example.data.repositories.NewsRepoImpl
+import com.example.domain.repositories.FavoriteRepo
 import com.example.domain.repositories.NewsRepo
 import dagger.Binds
 import dagger.Module
@@ -19,5 +21,10 @@ abstract class RepositoryModule {
         newsRepoImpl: NewsRepoImpl
     ): NewsRepo
 
+    @Binds
+    @Singleton
+    abstract fun bindFavoriteRepo(
+        favoriteRepoImpl: FavoriteRepoImpl
+    ): FavoriteRepo
 
 }

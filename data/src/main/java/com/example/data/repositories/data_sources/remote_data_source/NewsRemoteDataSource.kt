@@ -17,7 +17,6 @@ class NewsRemoteDataSource @Inject constructor(
     private val webServices: WebServices
 ) {
 
-
     suspend fun getHeadLines(category: String): Resource<List<Article>?> {
         val response = webServices.getHeadLines(category).articles
         return executeApi {
