@@ -24,4 +24,5 @@ The project is built using **Kotlin**, **MVVM architecture**, **Dagger Hilt** fo
 - **Material Design**: For creating a beautiful and modern user interface.
 
 ## Screenshots
+![image](https://github.com/user-attachments/assets/382f36fa-f7f8-46e8-aba7-80ec0ca3e423)
 
