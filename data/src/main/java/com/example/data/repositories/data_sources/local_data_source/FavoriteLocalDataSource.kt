@@ -22,4 +22,9 @@ class FavoriteLocalDataSource @Inject constructor(
         articlesDao.deleteArticle(article)
     }
 
+
+    suspend fun isArticleInFavorites(url: String): Boolean{
+        return articlesDao.isArticleInFavorites(url)
+    }
+
 }

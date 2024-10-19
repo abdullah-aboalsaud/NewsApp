@@ -14,9 +14,12 @@ interface ArticlesDao {
     suspend fun addArticle(article: ArticleEntityDM)
 
     @Delete
-    suspend fun deleteArticle (article: ArticleEntityDM)
+    suspend fun deleteArticle(article: ArticleEntityDM)
 
     @Query("select * from ArticleEntityDM")
-     fun getAllFavoriteArticles(): Flow<List<ArticleEntityDM>>
+    fun getAllFavoriteArticles(): Flow<List<ArticleEntityDM>>
+
+    @Query("SELECT EXISTS(SELECT 1 FROM ArticleEntityDM WHERE url = :url LIMIT 1)")
+    suspend fun isArticleInFavorites(url: String): Boolean
 
 }

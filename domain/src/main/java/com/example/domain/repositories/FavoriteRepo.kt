@@ -7,4 +7,5 @@ interface FavoriteRepo {
     suspend fun getAllFavoriteArticles(): Flow<List<Article>>
     suspend fun addArticle(article: Article)
     suspend fun deleteArticle(article: Article)
+    suspend fun isArticleInFavorites(url: String): Boolean
 }

@@ -19,7 +19,6 @@ class FavoriteRepoImpl @Inject constructor(
                 articleEntity.toDomain()
             }
         }
-
     }
 
     override suspend fun addArticle(article: Article) {
@@ -28,6 +27,11 @@ class FavoriteRepoImpl @Inject constructor(
 
     override suspend fun deleteArticle(article: Article) {
         favoriteLocalDataSource.deleteArticle(article.toEntityDM())
+    }
+
+
+    override suspend fun isArticleInFavorites(url: String): Boolean{
+       return favoriteLocalDataSource.isArticleInFavorites(url)
     }
 
 }

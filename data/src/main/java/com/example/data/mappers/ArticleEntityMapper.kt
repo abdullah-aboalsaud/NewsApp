@@ -4,6 +4,7 @@ import com.example.data.api.models.headlines.SourceDM
 import com.example.data.room.ArticleEntityDM
 import com.example.domain.models.headlines.Source
 import com.example.domain.models.news.Article
+
 // ArticleEntity to Domain
 fun ArticleEntityDM.toDomain(): Article {
     return Article(
@@ -29,10 +30,14 @@ fun SourceDM.toDomain(): Source {
 
 fun Article.toEntityDM(): ArticleEntityDM {
     return ArticleEntityDM(
-        id = this.id?:0,
         title = this.title,
         content = this.content,
-        source = this.source?.toEntityDM()
+        source = this.source?.toEntityDM(),
+        publishedAt = this.publishedAt,
+        author = this.author,
+        urlToImage = this.urlToImage,
+        description = this.description,
+        url = this.url.toString(),
     )
 }
 

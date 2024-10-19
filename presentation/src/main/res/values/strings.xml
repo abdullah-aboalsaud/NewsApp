@@ -19,5 +19,6 @@
     <string name="published_by">Published by</string>
     <string name="news_not_found">news not found !</string>
     <string name="search_news_hint">search news…</string>
+    <string name="favorites">Favorites</string>
 
 </resources>
