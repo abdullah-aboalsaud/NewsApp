@@ -29,11 +29,10 @@ The project is built using **Kotlin**, **MVVM architecture**, **Dagger Hilt** fo
 * [**Material Design**](https://material.io/develop/android/docs/getting-started): Provides modern UI components like buttons, toolbars, FABs, and other design patterns following Google’s Material Design guidelines.
 
 ## Screenshots
-![image](https://github.com/user-attachments/assets/382f36fa-f7f8-46e8-aba7-80ec0ca3e423)
-![Screenshot 2024-10-19 064959](https://github.com/user-attachments/assets/f15e4890-f213-4836-b710-84f9bdaeb3b4)
 
 <p float="left">
   <img src="https://github.com/user-attachments/assets/382f36fa-f7f8-46e8-aba7-80ec0ca3e423" alt="Screenshot 1" width="200" />
   <img src="https://github.com/user-attachments/assets/f15e4890-f213-4836-b710-84f9bdaeb3b4" alt="Screenshot 2" width="200" />
+   <img src="https://github.com/user-attachments/assets/18c14205-6236-4a0c-8cee-61a3f14e2db6" alt="Screenshot 2" width="200" />
 </p>
 
