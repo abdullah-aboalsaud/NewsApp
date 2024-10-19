@@ -33,7 +33,7 @@ The project is built using **Kotlin**, **MVVM architecture**, **Dagger Hilt** fo
 ![Screenshot 2024-10-19 064959](https://github.com/user-attachments/assets/f15e4890-f213-4836-b710-84f9bdaeb3b4)
 
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/382f36fa-f7f8-46e8-aba7-80ec0ca3e423" alt="Screenshot 1" width="300" />
-  <img src="https://github.com/user-attachments/assets/f15e4890-f213-4836-b710-84f9bdaeb3b4" alt="Screenshot 2" width="300" />
+  <img src="https://github.com/user-attachments/assets/382f36fa-f7f8-46e8-aba7-80ec0ca3e423" alt="Screenshot 1" width="200" />
+  <img src="https://github.com/user-attachments/assets/f15e4890-f213-4836-b710-84f9bdaeb3b4" alt="Screenshot 2" width="200" />
 </p>
 
