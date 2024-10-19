@@ -81,8 +81,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:visibility="gone"
             android:indeterminateTint="@color/primary_red"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@id/rv_articles"
             app:layout_constraintStart_toStartOf="@id/rv_articles"
             app:layout_constraintTop_toTopOf="@id/rv_articles" />
@@ -92,7 +92,7 @@
             android:id="@+id/rv_articles"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-           android:layout_marginTop="8dp"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintHeight_percent=".7"
             app:layout_constraintTop_toBottomOf="@id/rv_sources"
@@ -103,16 +103,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            app:drawableTop="@drawable/ic_launcher_foreground"
             android:gravity="bottom"
             android:text="@string/news_not_found"
             android:textColor="@color/primary_red"
             android:textSize="20sp"
             android:visibility="gone"
+            android:drawableTop="@drawable/icon_news"
             app:layout_constraintEnd_toEndOf="@id/rv_articles"
             app:layout_constraintStart_toStartOf="@id/rv_articles"
             app:layout_constraintTop_toTopOf="@id/rv_articles" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

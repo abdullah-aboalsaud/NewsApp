@@ -3,19 +3,19 @@ package com.example.data.mappers
 import com.example.data.api.models.news.ArticleDM
 import com.example.domain.models.news.Article
 
-open class ArticleMapper () {
+open class ArticleMapper() {
 
-    companion object{
+    companion object {
         fun toArticle(articleDM: ArticleDM?): Article {
             return Article(
-                articleDM?.publishedAt,
-                articleDM?.author,
-                articleDM?.urlToImage,
-                articleDM?.description,
-                toSource(articleDM?.source),
-                articleDM?.title,
-                articleDM?.url,
-                articleDM?.content
+                publishedAt = articleDM?.publishedAt,
+                author = articleDM?.author,
+                urlToImage = articleDM?.urlToImage,
+                description = articleDM?.description,
+                source = toSource(articleDM?.source),
+                title = articleDM?.title,
+                url = articleDM?.url,
+                content = articleDM?.content
             )
         }
 

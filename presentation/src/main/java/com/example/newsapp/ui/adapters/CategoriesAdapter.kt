@@ -37,7 +37,6 @@ class CategoriesAdapter(var categoryList: MutableList<CategoryModel>? = null) :
             // bind data
             binding.tvTitle.text = category?.title
 
-
         }
     }
 

@@ -12,8 +12,8 @@
     <style name="CircularShapeOverlay" >
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
-        <item name="backgroundTint">@color/primary_red</item>
-        <item name="tint">@color/white</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="tint">@color/gray</item>
         <item name="shapeAppearanceOverlay">@style/CircularShapeOverlay</item>
     </style>
 

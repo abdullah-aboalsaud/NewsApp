@@ -9,7 +9,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ArticleDM(
-
     val publishedAt: String? = null,
     val author: String? = null,
     val urlToImage: String? = null,

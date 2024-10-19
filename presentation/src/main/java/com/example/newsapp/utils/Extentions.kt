@@ -3,6 +3,7 @@ package com.example.newsapp.utils
 import android.content.Context
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
@@ -62,4 +63,8 @@ fun Fragment.showPlaceHolder(recycler: RecyclerView,  placeholder: TextView) {
 fun Fragment.hidePlaceHolder(recycler: RecyclerView,  placeholder: TextView) {
     recycler.visibility = View.VISIBLE
     placeholder.visibility = View.GONE
+}
+
+fun Fragment.showToast(message:String){
+    Toast.makeText(requireContext(),message, Toast.LENGTH_LONG).show()
 }

@@ -8,7 +8,7 @@ import java.util.Locale
 
 @Parcelize
 data class Article(
-
+    val id:Int ?=null,
     val publishedAt: String? = null,
     val author: String? = null,
     val urlToImage: String? = null,
